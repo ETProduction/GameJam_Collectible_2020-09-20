@@ -9,13 +9,16 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private float m_speed;
     [SerializeField] private Animator m_Animator;
     private Vector3 m_DirectionX = new Vector3(1, 0, 0);
-    
+    private float moveHorizontal = 0;
+    private float moveVertical = 0;
+    private Vector2 movement = new Vector2(0,0);
+
 
     // Update is called once per frame
     void Update()
     {
-        m_Animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-        m_Animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
+        m_Animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
+        m_Animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
         if (m_Animator.GetFloat("Vertical") > -0.001 && m_Animator.GetFloat("Vertical") < 0.001)
         {
             m_Animator.SetBool("MovingVertical",false);
@@ -26,12 +29,17 @@ public class PlayerBehavior : MonoBehaviour
         }
 
 
-        float moveHorizontal = Input.GetAxis("Horizontal");
+         moveHorizontal = Input.GetAxisRaw("Horizontal");
 
-        float moveVertical = Input.GetAxis("Vertical");
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-        transform.Translate(movement.normalized* Time.deltaTime * m_speed);
+         moveVertical = Input.GetAxisRaw("Vertical");
 
+         movement = new Vector2(moveHorizontal, moveVertical);
+
+    }
+    private void FixedUpdate()
+    {
+        
+        transform.Translate(movement.normalized * Time.deltaTime * m_speed);
     }
 
     private void OnCollisionEnter(Collision collision)
