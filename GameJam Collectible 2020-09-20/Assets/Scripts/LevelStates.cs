@@ -7,18 +7,16 @@ using UnityEngine.SceneManagement;
 public class LevelStates : MonoBehaviour
 {
 
-<<<<<<< HEAD
-    public static bool m_Picked_Apple;
     public static string m_LvlPast;
     public static string m_LvlPresent;
     public static string m_LvlFutur;
     public static int m_CurrentLevel;
     
-=======
+
     public static bool m_PickedAppleSeeds;
     public static bool m_CanPlantAppleSeed;
     public static bool m_PlantedAppleSeed;
->>>>>>> master
+
 
     // Start is called before the first frame update
     void Start()

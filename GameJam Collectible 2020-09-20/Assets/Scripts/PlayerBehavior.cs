@@ -28,7 +28,8 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         movementAxis();
-if(Input.GetKey(KeyCode.P))
+
+        if(Input.GetKey(KeyCode.P))
         {
             SceneManager.LoadScene(LevelStates.getLvlPast(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
 
@@ -43,12 +44,12 @@ if(Input.GetKey(KeyCode.P))
             SceneManager.LoadScene(LevelStates.getLvlFuture(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
         }
         
-        if (Input.GetKey(KeyCode.O) && LevelStates.m_Picked_Apple == true)
+        if (Input.GetKey(KeyCode.O) && LevelStates.m_PickedAppleSeeds == true)
         {
-            LevelStates.m_Picked_Apple = false;
+            LevelStates.m_PickedAppleSeeds = false;
         }
 
-        Debug.Log(LevelStates.m_Picked_Apple);
+        Debug.Log(LevelStates.m_PickedAppleSeeds);
 
 
     }

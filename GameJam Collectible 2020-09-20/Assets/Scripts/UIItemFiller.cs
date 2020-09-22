@@ -18,7 +18,7 @@ public class UIItemFiller : MonoBehaviour
     void Update()
     {
         //Debug.Log(UITab.transform.parent.gameObject.GetComponentsInChildren<Image>().Length);
-        if (LevelStates.m_Picked_Apple && appleSprite ==null)
+        if (LevelStates.m_PickedAppleSeeds && appleSprite ==null)
         {
             appleSprite = new GameObject(); //Create the GameObject
             Image NewImage = appleSprite.AddComponent<Image>(); //Add the Image Component script
@@ -39,7 +39,7 @@ public class UIItemFiller : MonoBehaviour
             appleSprite.transform.position = new Vector3(newPosX, posY, posZ);
             Debug.Log(UITab.rectTransform.rect.width);
 
-        }else if(appleSprite != null && LevelStates.m_Picked_Apple == false)
+        }else if(appleSprite != null && LevelStates.m_PickedAppleSeeds == false)
         {
             Destroy(appleSprite);
         }
