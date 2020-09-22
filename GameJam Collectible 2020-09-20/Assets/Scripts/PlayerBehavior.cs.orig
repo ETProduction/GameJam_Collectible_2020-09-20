@@ -28,7 +28,9 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         movementAxis();
-if(Input.GetKey(KeyCode.P))
+
+<<<<<<< HEAD
+        if(Input.GetKey(KeyCode.P))
         {
             SceneManager.LoadScene(LevelStates.getLvlPast(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
 
@@ -50,6 +52,9 @@ if(Input.GetKey(KeyCode.P))
 
         Debug.Log(LevelStates.m_Picked_Apple);
 
+=======
+        inputKeys();
+>>>>>>> master
 
     }
     private void FixedUpdate()
