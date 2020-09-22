@@ -62,7 +62,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.name == "Apple")
+        if(collision.name.Contains("Apple"))
         {
             collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
