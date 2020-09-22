@@ -21,6 +21,7 @@ public class PlayerBehavior : MonoBehaviour
     private void Start()
     {
         m_myBody = GetComponent<Rigidbody2D>();
+        LevelStates.m_CurrentLevel =0;
 
     }
     // Update is called once per frame
@@ -30,18 +31,20 @@ public class PlayerBehavior : MonoBehaviour
 
         if(Input.GetKey(KeyCode.P))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(LevelStates.getLvlPast(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
+
         } 
         else if(Input.GetKey(KeyCode.N))
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(LevelStates.getLvlPresent(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
+
         }
         else if (Input.GetKey(KeyCode.F))
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(LevelStates.getLvlFuture(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
         }
-
-        if(Input.GetKey(KeyCode.O) && LevelStates.m_Picked_Apple == true)
+        
+        if (Input.GetKey(KeyCode.O) && LevelStates.m_Picked_Apple == true)
         {
             LevelStates.m_Picked_Apple = false;
         }
