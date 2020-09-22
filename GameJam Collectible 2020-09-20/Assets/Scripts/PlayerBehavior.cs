@@ -21,7 +21,7 @@ public class PlayerBehavior : MonoBehaviour
     private void Start()
     {
         m_myBody = GetComponent<Rigidbody2D>();
-        LevelStates.m_CurrentLevel =0;
+        
 
     }
     // Update is called once per frame
