@@ -16,7 +16,7 @@ public class PlayerBehavior : MonoBehaviour
     private Vector2 movement = new Vector2(0,0);
     private Rigidbody2D m_myBody;
 
-    
+    [SerializeField] LevelObjectsInit m_LevelsObjectInit;
 
     private void Start()
     {
@@ -28,26 +28,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         movementAxis();
 
-        if(Input.GetKey(KeyCode.P))
-        {
-            SceneManager.LoadScene(0);
-        } 
-        else if(Input.GetKey(KeyCode.N))
-        {
-            SceneManager.LoadScene(1);
-        }
-        else if (Input.GetKey(KeyCode.F))
-        {
-            SceneManager.LoadScene(2);
-        }
-
-        if(Input.GetKey(KeyCode.O) && LevelStates.m_Picked_Apple == true)
-        {
-            LevelStates.m_Picked_Apple = false;
-        }
-
-        Debug.Log(LevelStates.m_Picked_Apple);
-
+        inputKeys();
 
     }
     private void FixedUpdate()
@@ -62,12 +43,32 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.name.Contains("Apple"))
+        Debug.Log("TriggerEnter");
+
+        if (collision.name.Contains("Apple"))
         {
-            collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            LevelStates.m_Picked_Apple = true;
-            Debug.Log("Trigger");
+            Destroy(collision.gameObject);
+            LevelStates.m_PickedAppleSeeds = true;
+            Debug.Log("TriggerApple");
+        }
+
+        if (collision.name.Contains("Garden"))
+        {
+            LevelStates.m_CanPlantAppleSeed = true;
+            Debug.Log(LevelStates.m_PlantedAppleSeed);
+            Debug.Log("TriggerGarden");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("TriggerExit");
+
+        if (collision.name.Contains("Garden"))
+        {
+            LevelStates.m_CanPlantAppleSeed = false;
+            Debug.Log(LevelStates.m_PlantedAppleSeed);
+            Debug.Log("TriggerGarden");
         }
     }
 
@@ -91,5 +92,35 @@ public class PlayerBehavior : MonoBehaviour
         moveVertical = Input.GetAxisRaw("Vertical");
 
         movement = new Vector2(moveHorizontal, moveVertical);
+    }
+
+    private void inputKeys()
+    {
+        if (Input.GetKey(KeyCode.P))
+        {
+            SceneManager.LoadScene(0);
+        }
+        else if (Input.GetKey(KeyCode.N))
+        {
+            SceneManager.LoadScene(1);
+        }
+        else if (Input.GetKey(KeyCode.F))
+        {
+            SceneManager.LoadScene(2);
+        }
+
+        if (Input.GetKey(KeyCode.X) && LevelStates.m_PickedAppleSeeds == true)
+        {
+            m_LevelsObjectInit.InitSeed();
+            LevelStates.m_PickedAppleSeeds = false;
+        }
+
+        if (Input.GetKey(KeyCode.G) && LevelStates.m_PickedAppleSeeds == true && LevelStates.m_CanPlantAppleSeed == true)
+        {
+            LevelStates.m_PlantedAppleSeed = true;
+            //Destroy(collision.gameObject);
+        }
+
+        Debug.Log(LevelStates.m_PickedAppleSeeds);
     }
 }

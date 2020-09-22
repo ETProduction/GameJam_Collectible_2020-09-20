@@ -5,7 +5,9 @@ using UnityEngine;
 public class LevelStates : MonoBehaviour
 {
 
-    public static bool m_Picked_Apple;
+    public static bool m_PickedAppleSeeds;
+    public static bool m_CanPlantAppleSeed;
+    public static bool m_PlantedAppleSeed;
 
     // Start is called before the first frame update
     void Start()
