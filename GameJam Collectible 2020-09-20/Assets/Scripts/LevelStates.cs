@@ -11,10 +11,12 @@ public class LevelStates : MonoBehaviour
     public static string m_LvlPresent;
     public static string m_LvlFutur;
     public static int m_CurrentLevel;
-
+    public static string m_CurrentTime;
     public static bool m_PickedAppleSeeds;
     public static bool m_CanPlantAppleSeed;
     public static bool m_PlantedAppleSeed;
+    public static bool m_PickedApple;
+    public static bool m_AppleDropped;
 
 
     // Start is called before the first frame update

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3245578565044294220}
   - component: {fileID: 3245578565044294221}
   - component: {fileID: 3245578565044294222}
-  - component: {fileID: 3245578565044294219}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -84,18 +83,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3245578565044294223}
   m_Enabled: 1
---- !u!114 &3245578565044294219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3245578565044294223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b6691967d0ebb542afbb3828d4be303, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3245578565748739973
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +157,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 10
   m_Sprite: {fileID: -2599723440871702021, guid: f2863fbb5e6c33740bfb36edca285e3a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -197,7 +184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 500
   m_Animator: {fileID: 3245578565748739970}
-  m_LevelsObjectInit: {fileID: 0}
+  m_LevelsObjectInit: {fileID: 63010755290069048, guid: 524fb74b68735e0469589e7729fecd9e,
+    type: 3}
 --- !u!95 &3245578565748739970
 Animator:
   serializedVersion: 3
