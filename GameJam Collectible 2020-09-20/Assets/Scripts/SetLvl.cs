@@ -8,7 +8,6 @@ public class SetLvl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LevelStates.m_CurrentLevel = level;
     }
 
     // Update is called once per frame

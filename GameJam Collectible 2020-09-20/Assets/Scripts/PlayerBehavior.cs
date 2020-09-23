@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEditor.Experimental.AssetImporters;
@@ -51,8 +52,17 @@ public class PlayerBehavior : MonoBehaviour
 
         Debug.Log(LevelStates.m_PickedAppleSeeds);
 
-
+        returnToLevelSelect();
     }
+
+    private void returnToLevelSelect()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Level_Selection");
+        }
+    }
+
     private void FixedUpdate()
     {
         m_myBody.velocity = movement.normalized * Time.deltaTime * m_speed;       

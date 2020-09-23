@@ -29,51 +29,26 @@ public class LevelStates : MonoBehaviour
     }
     public static string getLvlPast(int level)
     {
-        switch (level)
-        {
-            case 0:
-                m_LvlPast = "Level_0_Past";
-                break;
-            case 100000:
-                m_LvlPast = "Level_0_Past_TestUI";
-                break;
-            default:
-                m_LvlPast = SceneManager.GetActiveScene().name;
-                break;
-        }
-        return m_LvlPast;
+        string lvlName = "Level_" + level + "_Past";
+        return lvlName;
     }
 
     public static string getLvlPresent(int level)
     {
-        switch (level)
-        {
-            case 0:
-                m_LvlPresent = "Level_0_Present";
-                break;
-            case 100000:
-                m_LvlPresent = "Level_0_Present_TestUI";
-                break;
-            default:
-                m_LvlPresent = SceneManager.GetActiveScene().name;
-                break;
-        }
-        return m_LvlPresent;
+        string lvlName = "Level_" + level + "_Present";
+       
+        return lvlName;
     }
     public static string getLvlFuture(int level)
     {
-        switch (level)
-        {
-            case 0:
-                m_LvlFutur = "Level_0_Future";
-                break;
-            case 100000:
-                m_LvlFutur = "Level_0_Future_TestUI";
-                break;
-            default:
-                m_LvlFutur = SceneManager.GetActiveScene().name;
-                break;
-        }
-        return m_LvlFutur;
+        string lvlName = "Level_" + level + "_Future";
+       
+        return lvlName;
+    }
+
+    public static void loadLvl()
+    {
+        string sceneName = "Level_" + m_CurrentLevel + "_Present";
+        SceneManager.LoadScene(sceneName);
     }
 }
