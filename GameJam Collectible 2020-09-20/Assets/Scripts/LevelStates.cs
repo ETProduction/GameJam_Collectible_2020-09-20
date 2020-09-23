@@ -11,12 +11,7 @@ public class LevelStates : MonoBehaviour
     public static string m_LvlPresent;
     public static string m_LvlFutur;
     public static int m_CurrentLevel;
-<<<<<<< HEAD
     public static string m_CurrentTime;
-
-=======
->>>>>>> fc549037733d5a77e551f9196a5d9d693263a156
-
     public static bool m_PickedAppleSeeds;
     public static bool m_CanPlantAppleSeed;
     public static bool m_PlantedAppleSeed;
@@ -36,21 +31,8 @@ public class LevelStates : MonoBehaviour
     }
     public static string getLvlPast(int level)
     {
-<<<<<<< HEAD
-        switch (level)
-        {
-            case 0:
-                m_LvlPast = "Level_0_Past";
-                break;    
-            default:
-                m_LvlPast = SceneManager.GetActiveScene().name;
-                break;
-        }
-        return m_LvlPast;
-=======
         string lvlName = "Level_" + level + "_Past";
         return lvlName;
->>>>>>> fc549037733d5a77e551f9196a5d9d693263a156
     }
 
     public static string getLvlPresent(int level)

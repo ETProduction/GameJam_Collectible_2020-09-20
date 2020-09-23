@@ -21,11 +21,7 @@ public class PlayerBehavior : MonoBehaviour
     private void Start()
     {
         m_myBody = GetComponent<Rigidbody2D>();
-<<<<<<< HEAD
         LevelStates.m_CurrentLevel = 0;
-=======
-        
->>>>>>> fc549037733d5a77e551f9196a5d9d693263a156
 
     }
     // Update is called once per frame
@@ -33,28 +29,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         movementAxis();
 
-<<<<<<< HEAD
         inputKeys();
-=======
-        if(Input.GetKey(KeyCode.P))
-        {
-            SceneManager.LoadScene(LevelStates.getLvlPast(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
-
-        } 
-        else if(Input.GetKey(KeyCode.N))
-        {
-            SceneManager.LoadScene(LevelStates.getLvlPresent(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
-
-        }
-        else if (Input.GetKey(KeyCode.F))
-        {
-            SceneManager.LoadScene(LevelStates.getLvlFuture(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
-        }
-        
-        if (Input.GetKey(KeyCode.O) && LevelStates.m_PickedAppleSeeds == true)
-        {
-            LevelStates.m_PickedAppleSeeds = false;
-        }
 
         Debug.Log(LevelStates.m_PickedAppleSeeds);
 
@@ -67,7 +42,6 @@ public class PlayerBehavior : MonoBehaviour
         {
             SceneManager.LoadScene("Level_Selection");
         }
->>>>>>> fc549037733d5a77e551f9196a5d9d693263a156
     }
 
     private void FixedUpdate()
