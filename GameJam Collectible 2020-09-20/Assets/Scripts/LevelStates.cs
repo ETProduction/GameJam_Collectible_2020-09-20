@@ -6,13 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class LevelStates : MonoBehaviour
 {
-
+    public static int m_numberOfKey;
     public static string m_LvlPast;
     public static string m_LvlPresent;
     public static string m_LvlFutur;
     public static int m_CurrentLevel;
+<<<<<<< HEAD
     public static string m_CurrentTime;
 
+=======
+>>>>>>> fc549037733d5a77e551f9196a5d9d693263a156
 
     public static bool m_PickedAppleSeeds;
     public static bool m_CanPlantAppleSeed;
@@ -33,6 +36,7 @@ public class LevelStates : MonoBehaviour
     }
     public static string getLvlPast(int level)
     {
+<<<<<<< HEAD
         switch (level)
         {
             case 0:
@@ -43,32 +47,28 @@ public class LevelStates : MonoBehaviour
                 break;
         }
         return m_LvlPast;
+=======
+        string lvlName = "Level_" + level + "_Past";
+        return lvlName;
+>>>>>>> fc549037733d5a77e551f9196a5d9d693263a156
     }
 
     public static string getLvlPresent(int level)
     {
-        switch (level)
-        {
-            case 0:
-                m_LvlPresent = "Level_0_Present";
-                break;
-            default:
-                m_LvlPresent = SceneManager.GetActiveScene().name;
-                break;
-        }
-        return m_LvlPresent;
+        string lvlName = "Level_" + level + "_Present";
+       
+        return lvlName;
     }
     public static string getLvlFuture(int level)
     {
-        switch (level)
-        {
-            case 0:
-                m_LvlFutur = "Level_0_Future";
-                break;
-            default:
-                m_LvlFutur = SceneManager.GetActiveScene().name;
-                break;
-        }
-        return m_LvlFutur;
+        string lvlName = "Level_" + level + "_Future";
+       
+        return lvlName;
+    }
+
+    public static void loadLvl()
+    {
+        string sceneName = "Level_" + m_CurrentLevel + "_Present";
+        SceneManager.LoadScene(sceneName);
     }
 }
