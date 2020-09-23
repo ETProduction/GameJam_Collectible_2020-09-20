@@ -17,6 +17,8 @@ public class LevelStates : MonoBehaviour
     public static bool m_PlantedAppleSeed;
     public static bool m_PickedApple;
     public static bool m_AppleDropped;
+    public static bool m_PlayerCanInteract;
+    public static bool m_PlayerIsInteracting;
 
 
     // Start is called before the first frame update
