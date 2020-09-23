@@ -11,11 +11,14 @@ public class LevelStates : MonoBehaviour
     public static string m_LvlPresent;
     public static string m_LvlFutur;
     public static int m_CurrentLevel;
-    
+    public static string m_CurrentTime;
+
 
     public static bool m_PickedAppleSeeds;
     public static bool m_CanPlantAppleSeed;
     public static bool m_PlantedAppleSeed;
+    public static bool m_PickedApple;
+    public static bool m_AppleDropped;
 
 
     // Start is called before the first frame update
@@ -33,7 +36,7 @@ public class LevelStates : MonoBehaviour
         switch (level)
         {
             case 0:
-                m_LvlPast = "Level_0_Past_TestUI";
+                m_LvlPast = "Level_0_Past";
                 break;    
             default:
                 m_LvlPast = SceneManager.GetActiveScene().name;
