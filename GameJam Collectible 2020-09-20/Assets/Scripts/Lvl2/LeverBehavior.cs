@@ -16,12 +16,7 @@ public class LeverBehavior : MonoBehaviour
     private float m_leverCooldown = 0.3f;
 
     private bool isTrigger;
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
+ 
     void Update()
     {
         if (Lvl2States.LeverIsOff(m_LeverIndex))
@@ -39,7 +34,6 @@ public class LeverBehavior : MonoBehaviour
             leverAction();          
             LevelStates.m_PlayerIsInteracting = false;
         }
-       // leverCooldown();
     }
 
     private void leverCooldown()
