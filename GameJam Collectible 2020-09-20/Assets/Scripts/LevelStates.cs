@@ -9,6 +9,8 @@ public class LevelStates : MonoBehaviour
     public static bool m_PlayerIsDead;
     public static int m_numberOfKey;
     public static string m_LvlPast;
+
+    
     public static string m_LvlPresent;
     public static string m_LvlFutur;
     public static int m_CurrentLevel;
@@ -56,4 +58,29 @@ public class LevelStates : MonoBehaviour
         string sceneName = "Level_" + m_CurrentLevel + "_Present";
         SceneManager.LoadScene(sceneName);
     }
+
+    public static void setKeyStates(int key)
+    {
+        switch (m_CurrentLevel)
+        {
+            case 2:
+                Lvl2States.setKeyStates(key);
+                break;
+            default:
+                break;
+        }
+    }
+    public static bool getKeyIsPicked(int m_KeyIndex)
+    {
+        switch (m_KeyIndex)
+        {
+            case 2:
+                return Lvl2States.getKeyIsPicked(m_KeyIndex);
+
+            default:
+                return false;
+        }
+        
+    }
+
 }

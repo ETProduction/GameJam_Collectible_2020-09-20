@@ -82,4 +82,5 @@ public class LeverBehavior : MonoBehaviour
         isTrigger = false;
         LevelStates.m_PlayerCanInteract = false;
     }
+    
 }

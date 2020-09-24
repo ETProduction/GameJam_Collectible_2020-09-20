@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class KeyBehavior : MonoBehaviour
 {
+    [SerializeField] private int m_KeyIndex;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (LevelStates.getKeyIsPicked(m_KeyIndex))
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -19,6 +23,7 @@ public class KeyBehavior : MonoBehaviour
     {
         if(collision.collider.tag == "Player")
         {
+            LevelStates.setKeyStates(m_KeyIndex);
             LevelStates.m_numberOfKey += 1;
             Destroy(gameObject);
         }

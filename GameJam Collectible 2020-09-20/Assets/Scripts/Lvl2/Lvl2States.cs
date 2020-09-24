@@ -8,20 +8,30 @@ public class Lvl2States : LevelStates
     // Start is called before the first frame update
     public static bool m_SpikeFloorIsDown;
     public static bool m_SpikeWall1IsDown;
+
+
+
     public static bool m_SpikeWall2IsDown;
     public static bool m_SpikeWall3IsDown;
     public static bool m_SpikeDoor5IsDown;
 
-    [SerializeField] public static GameObject m_SpikeWall1;
-    [SerializeField] public static GameObject m_SpikeWall2;
-    [SerializeField] public static GameObject m_SpikeWall3;
-    [SerializeField] public static GameObject m_SpikeFloor;
+    public static GameObject m_SpikeWall1;
+    public static GameObject m_SpikeWall2;
+    public static GameObject m_SpikeWall3;
+    public static GameObject m_SpikeFloor;
 
-    [SerializeField] public static GameObject m_SpikeDoor1;
-    [SerializeField] public static GameObject m_SpikeDoor2;
-    [SerializeField] public static GameObject m_SpikeDoor3;
-    [SerializeField] public static GameObject m_SpikeDoor4;
-    [SerializeField] public static GameObject m_SpikeDoor5;
+    public static GameObject m_SpikeDoor1;
+    public static GameObject m_SpikeDoor2;
+    public static GameObject m_SpikeDoor3;
+    public static GameObject m_SpikeDoor4;
+    public static GameObject m_SpikeDoor5;
+
+    public static bool m_Key1IsPicked = false;
+    public static bool m_Key2IsPicked = false;
+    public static bool m_Key3IsPicked = false;
+
+
+
 
 
     internal static bool LeverIsOff(int m_LeverIndex)
@@ -40,14 +50,14 @@ public class Lvl2States : LevelStates
                 return m_SpikeDoor5IsDown;
             default:
                 return false;
-                
+
         }
     }
 
     private void Start()
     {
         LevelStates.m_CurrentLevel = 2;
-        for(int i =0; i< GameObject.FindGameObjectsWithTag("Spike").Length; i++)
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Spike").Length; i++)
         {
             if (GameObject.FindGameObjectsWithTag("Spike")[i].name.Contains("Floor"))
             {
@@ -73,7 +83,8 @@ public class Lvl2States : LevelStates
                 if (GameObject.FindGameObjectsWithTag("Spike")[i].name.Contains("1"))
                 {
                     m_SpikeDoor1 = GameObject.FindGameObjectsWithTag("Spike")[i];
-                }else if (GameObject.FindGameObjectsWithTag("Spike")[i].name.Contains("2"))
+                }
+                else if (GameObject.FindGameObjectsWithTag("Spike")[i].name.Contains("2"))
                 {
                     m_SpikeDoor2 = GameObject.FindGameObjectsWithTag("Spike")[i];
                 }
@@ -92,7 +103,7 @@ public class Lvl2States : LevelStates
 
             }
         }
-       
+
     }
 
     internal static void ChangeSpikeStates(int m_LeverIndex)
@@ -116,6 +127,40 @@ public class Lvl2States : LevelStates
                 break;
             default:
                 break;
+        }
+    }
+    public static void setKeyStates(int keyIndex)
+    {
+        switch (keyIndex)
+        {
+            case 1:
+                m_Key1IsPicked = true;
+                break;
+            case 2:
+                m_Key2IsPicked = true;
+
+                break;
+            case 3:
+                m_Key3IsPicked = true;
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    public static bool getKeyIsPicked(int m_KeyIndex)
+    {
+        switch (m_KeyIndex)
+        {
+            case 1:
+                return m_Key1IsPicked;
+            case 2:
+                return m_Key2IsPicked;
+            case 3:
+                return m_Key3IsPicked;
+            default:
+                return false;
         }
     }
 }
