@@ -20,6 +20,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private void Start()
     {
+        transform.position = LevelStates.m_PlayerPosition;
         LevelStates.m_PlayerIsDead = false;
         m_myBody = GetComponent<Rigidbody2D>();
 
@@ -35,13 +36,25 @@ public class PlayerBehavior : MonoBehaviour
         {
             movementAxis();
 
+            updatePlayerPosition();
+
             inputKeys();
+
 
             returnToLevelSelect();
         }
        
         
         
+    }
+
+    private void updatePlayerPosition()
+    {
+        LevelStates.m_PlayerPosition = transform.position;
+        if (LevelStates.m_PlayerIsDead)
+        {
+            LevelStates.m_PlayerPosition = Lvl2States.m_DefaultPosition;
+        }
     }
 
     private void returnToLevelSelect()
@@ -92,11 +105,6 @@ public class PlayerBehavior : MonoBehaviour
             Destroy(collision.gameObject);
             LevelStates.m_PickedApple = true;
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -22,6 +22,7 @@ public class LevelStates : MonoBehaviour
     public static bool m_AppleDropped;
     public static bool m_PlayerCanInteract;
     public static bool m_PlayerIsInteracting;
+    public static Vector3 m_PlayerPosition = new Vector3(0,0,0);
 
 
     // Start is called before the first frame update

@@ -29,10 +29,7 @@ public class Lvl2States : LevelStates
     public static bool m_Key1IsPicked = false;
     public static bool m_Key2IsPicked = false;
     public static bool m_Key3IsPicked = false;
-
-
-
-
+    public static Vector3 m_DefaultPosition = new Vector3(1,0,0);
 
     internal static bool LeverIsOff(int m_LeverIndex)
     {
@@ -53,7 +50,13 @@ public class Lvl2States : LevelStates
 
         }
     }
-
+    private void Awake()
+    {
+        if (LevelStates.m_PlayerIsDead)
+        {
+            LevelStates.m_PlayerPosition = new Vector3(1, 0, 0);
+        }
+    }
     private void Start()
     {
         LevelStates.m_CurrentLevel = 2;
