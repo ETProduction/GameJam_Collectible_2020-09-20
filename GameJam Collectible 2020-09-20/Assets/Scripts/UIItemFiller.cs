@@ -10,7 +10,9 @@ public class UIItemFiller : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private Image UITab;
     [SerializeField] private Sprite m_AppleSprite;
-    [SerializeField] private Text m_epoque;
+    [SerializeField] private Text m_Past;
+    [SerializeField] private Text m_Present;
+    [SerializeField] private Text m_Future;
     [SerializeField] private Text m_numberKey;
     private GameObject appleSprite;
     void Start()
@@ -61,22 +63,30 @@ public class UIItemFiller : MonoBehaviour
 
     private void setEpoqueText()
     {
-        m_epoque.text = SceneManager.GetActiveScene().name;
-        if (m_epoque.text.Contains("Past"))
+        string epoque = SceneManager.GetActiveScene().name;    
+        if (epoque.Contains("Past"))
         {
-            m_epoque.text = "Past";
+            m_Past.color = Color.red;
+            m_Present.color = Color.white;
+            m_Future.color = Color.white;
         }
-        else if (m_epoque.text.Contains("Present"))
+        else if (epoque.Contains("Present"))
         {
-            m_epoque.text = "Present";
+            m_Past.color = Color.white;
+            m_Present.color = Color.red;
+            m_Future.color = Color.white;
         }
-        else if (m_epoque.text.Contains("Futur"))
+        else if (epoque.Contains("Futur"))
         {
-            m_epoque.text = "Future";
+            m_Past.color = Color.white;
+            m_Present.color = Color.white;
+            m_Future.color = Color.red;
         }
         else
         {
-            m_epoque.text = "";
+            m_Past.color = Color.white;
+            m_Present.color = Color.white;
+            m_Past.color = Color.white;
         }
     }
 }
