@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class SpikeBehavior : MonoBehaviour
 {
     [SerializeField] private GameObject spikeWall;
+    private bool m_PlayerIsDead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +17,17 @@ public class SpikeBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         setSpikesFloorStates();
         setSpikeWall1States();
         setSpikeWall2States();
         setSpikeWall3States();
         setSpikeDoorStates();
 
-
+        if (GetComponent<AudioSource>().isPlaying==false && m_PlayerIsDead)
+        {
+            SceneManager.LoadScene(LevelStates.getLvlPresent(LevelStates.m_CurrentLevel));
+        }
     }
 
     
@@ -148,11 +152,13 @@ public class SpikeBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(LevelStates.m_CurrentLevel);
-        SceneManager.LoadScene(LevelStates.getLvlPresent(LevelStates.m_CurrentLevel));
+        if (!GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().Play();
+            m_PlayerIsDead = true;
+            LevelStates.m_PlayerIsDead = true;
+        }
+       
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("grgr");
-    }
+   
 }

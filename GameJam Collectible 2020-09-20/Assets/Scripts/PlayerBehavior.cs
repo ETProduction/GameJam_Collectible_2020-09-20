@@ -20,17 +20,28 @@ public class PlayerBehavior : MonoBehaviour
 
     private void Start()
     {
+        LevelStates.m_PlayerIsDead = false;
         m_myBody = GetComponent<Rigidbody2D>();
 
     }
     // Update is called once per frame
     void Update()
     {
-        movementAxis();
+        if (LevelStates.m_PlayerIsDead)
+        {
+            movement = new Vector2(0, 0);
+        }
+        else
+        {
+            movementAxis();
 
-        inputKeys();
+            inputKeys();
 
-        returnToLevelSelect();
+            returnToLevelSelect();
+        }
+       
+        
+        
     }
 
     private void returnToLevelSelect()

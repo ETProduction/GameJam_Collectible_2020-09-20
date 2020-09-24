@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelStates : MonoBehaviour
 {
+    public static bool m_PlayerIsDead;
     public static int m_numberOfKey;
     public static string m_LvlPast;
     public static string m_LvlPresent;
