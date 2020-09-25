@@ -74,10 +74,11 @@ public class PlayerBehavior : MonoBehaviour
         m_myBody.velocity = movement.normalized * Time.deltaTime * m_speed;       
     }
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         if (collision.collider.tag.Equals("Exchanger"))
         {
-            if(LevelStates.m_PickedApple == true)
+            if (LevelStates.m_PickedApple == true)
             {
                 LevelStates.Instructions = "Vous oouvez échanger la pomme pour avoir une clé avec X";
             }
@@ -97,6 +98,7 @@ public class PlayerBehavior : MonoBehaviour
             LevelStates.Instructions = "";
             LevelStates.m_OnExchanger = false;
         }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
