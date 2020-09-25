@@ -59,11 +59,11 @@ public class UIItemFiller : MonoBehaviour
             int numberOfImage = UITab.transform.parent.gameObject.GetComponentsInChildren<Image>().Length;
             float uiWidth = UITab.rectTransform.rect.width;
 
-            Debug.Log(((uiWidth / 2) - ((uiWidth / 2))));
+            
             float newPosX = posX - ((uiWidth / 2) - ((uiWidth / 2) / (numberOfImage - 2)));
-
+            
             appleSeedSprite.transform.position = new Vector3(newPosX, posY, posZ);
-            Debug.Log(UITab.rectTransform.rect.width);
+            
 
         }
         else if (appleSeedSprite != null && LevelStates.m_PickedAppleSeeds == false)
