@@ -40,6 +40,11 @@ public class UIItemFiller : MonoBehaviour
 
     }
 
+    private void initObjectInInventory(Sprite m_AppleSeedSprite)
+    {
+        throw new NotImplementedException();
+    }
+
     private void initiateAppleSeedUI()
     {
         if (LevelStates.m_PickedAppleSeeds && appleSeedSprite == null)
@@ -51,25 +56,27 @@ public class UIItemFiller : MonoBehaviour
             appleSeedSprite.GetComponent<RectTransform>().SetParent(transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
             appleSeedSprite.SetActive(true); //Activate the GameObject
             appleSeedSprite.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            appleSeedSprite.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
 
-            float posX = UITab.transform.position.x;
-            float posY = UITab.transform.position.y;
-            float posZ = UITab.transform.position.z;
 
-            int numberOfImage = UITab.transform.parent.gameObject.GetComponentsInChildren<Image>().Length;
+            float posX = UITab.rectTransform.localPosition.x;
+            float posY = UITab.rectTransform.localPosition.y;
+            float posZ = UITab.rectTransform.localPosition.z;
+
+            int numberOfImage = UITab.rectTransform.parent.gameObject.GetComponentsInChildren<Image>().Length;
             float uiWidth = UITab.rectTransform.rect.width;
+            float uiHeight = UITab.rectTransform.rect.height;
 
+            appleSeedSprite.transform.localPosition = new Vector3(posX- (uiWidth/2),posY+ (uiHeight/2), posZ);
             
-            float newPosX = posX - ((uiWidth / 2) - ((uiWidth / 2) / (numberOfImage - 2)));
-            
-            appleSeedSprite.transform.position = new Vector3(newPosX, posY, posZ);
-            
-
         }
         else if (appleSeedSprite != null && LevelStates.m_PickedAppleSeeds == false)
         {
             Destroy(appleSeedSprite);
         }
+       
+        
+
     }
 
     private void initiateAppleUI()
@@ -90,11 +97,9 @@ public class UIItemFiller : MonoBehaviour
             int numberOfImage = UITab.transform.parent.gameObject.GetComponentsInChildren<Image>().Length;
             float uiWidth = UITab.rectTransform.rect.width;
 
-            Debug.Log(((uiWidth / 2) - ((uiWidth / 2))));
-            float newPosX = posX - ((uiWidth / 2) - ((uiWidth / 2) / (numberOfImage - 2)));
+            float uiHeight = UITab.rectTransform.rect.height;
 
-            appleSprite.transform.position = new Vector3(newPosX, posY, posZ);
-            Debug.Log(UITab.rectTransform.rect.width);
+            appleSprite.transform.localPosition = new Vector3(posX - (uiWidth / 2), posY + (uiHeight / 2), posZ);
 
         }
         else if (appleSprite != null && LevelStates.m_PickedApple == false)
@@ -122,16 +127,14 @@ public class UIItemFiller : MonoBehaviour
             int numberOfImage = UITab.transform.parent.gameObject.GetComponentsInChildren<Image>().Length;
             float uiWidth = UITab.rectTransform.rect.width;
 
-            Debug.Log(((uiWidth / 2) - ((uiWidth / 2))));
-            float newPosX = posX - ((uiWidth / 2) - ((uiWidth / 2) / (numberOfImage - 2)));
+            float uiHeight = UITab.rectTransform.rect.height;
 
-            coinSprite.transform.position = new Vector3(newPosX, posY, posZ);
-            Debug.Log(UITab.rectTransform.rect.width);
+            coinSprite.transform.localPosition = new Vector3(posX - (uiWidth / 2), posY + (uiHeight / 2), posZ);
 
         }
         else if (coinSprite != null && Level1States.m_GotTheCoin == false)
         {
-            Destroy(appleSprite);
+            Destroy(coinSprite);
         }
     }
 
