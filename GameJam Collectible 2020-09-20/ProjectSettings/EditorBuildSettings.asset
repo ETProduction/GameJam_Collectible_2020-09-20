@@ -29,12 +29,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/MainMenu.unity
     guid: fa91dc54b175c0f42841c207387f8b63
+    path: Assets/Scenes/Level_2_Future.unity
+    guid: 801c0afbc31fec34a9573967f781ae8a
   - enabled: 1
     path: Assets/Scenes/lvl1/Level_1_Past.unity
     guid: 622622ba9d663dc4ea636fb2843198e5
+    path: Assets/Scenes/Level_2_Past.unity
+    guid: 6030d41d8555b5b4e86fc930c229e96a
   - enabled: 1
     path: Assets/Scenes/lvl1/Level_1_Present.unity
     guid: 839178962f196764b9ccf70becff40aa
+    path: Assets/Scenes/Level_2_Present.unity
+    guid: f9ac01ef73f1ddc4e80bbc6991a57c0b
   - enabled: 1
     path: Assets/Scenes/lvl1/Level_1_Future.unity
     guid: 85027d0cc8d0fbe42b242117162e8113

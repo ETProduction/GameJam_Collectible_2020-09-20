@@ -21,19 +21,44 @@ public class PlayerBehavior : MonoBehaviour
 
     private void Start()
     {
+        transform.position = LevelStates.m_PlayerPosition;
+        LevelStates.m_PlayerIsDead = false;
         m_myBody = GetComponent<Rigidbody2D>();
     }
-
+    private void Awake()
+    {
+        LevelStates.setCurrentLevel(SceneManager.GetActiveScene().name);
+    }
     // Update is called once per frame
     void Update()
     {
-        movementAxis();
+        if (LevelStates.m_PlayerIsDead)
+        {
+            movement = new Vector2(0, 0);
+        }
+        else
+        {
+            movementAxis();
 
-        inputKeys();
+            updatePlayerPosition();
 
-        Debug.Log(LevelStates.m_PickedAppleSeeds);
+            inputKeys();
 
-        returnToLevelSelect();
+
+            returnToLevelSelect();
+        }
+       
+        
+        
+    }
+
+    private void updatePlayerPosition()
+    {
+        LevelStates.m_PlayerPosition = transform.position;
+        if (LevelStates.m_PlayerIsDead)
+        {
+            LevelStates.m_PlayerPosition = Lvl2States.m_DefaultPosition;
+        }
     }
 
     private void returnToLevelSelect()
@@ -49,8 +74,7 @@ public class PlayerBehavior : MonoBehaviour
         m_myBody.velocity = movement.normalized * Time.deltaTime * m_speed;       
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
+    
         if (collision.collider.tag.Equals("Exchanger"))
         {
             if(LevelStates.m_PickedApple == true)
@@ -73,10 +97,10 @@ public class PlayerBehavior : MonoBehaviour
             LevelStates.Instructions = "";
             LevelStates.m_OnExchanger = false;
         }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
 
         if (collision.tag.Equals("AppleSeeds"))
         {
@@ -100,17 +124,20 @@ public class PlayerBehavior : MonoBehaviour
             }
 
             LevelStates.m_CanPlantAppleSeed = true;
+
         }
 
         if (collision.tag.Equals("MidTree"))
         {
             collision.GetComponent<SpriteRenderer>().sortingOrder = 11;
+
         }
 
         if (collision.tag.Equals("AppleTree"))
         {
             LevelStates.Instructions = "Pressez H pour frapper l'arbre et faire tombre la pomme.";
             collision.GetComponent<SpriteRenderer>().sortingOrder = 11;
+
         }
 
         if (collision.tag.Equals("Apple"))
@@ -118,11 +145,6 @@ public class PlayerBehavior : MonoBehaviour
             Destroy(collision.gameObject);
             LevelStates.m_PickedApple = true;
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -136,12 +158,14 @@ public class PlayerBehavior : MonoBehaviour
         if (collision.tag.Equals("MidTree"))
         {
             collision.GetComponent<SpriteRenderer>().sortingOrder = 9;
+
         }
 
         if (collision.tag.Equals("AppleTree"))
         {
             LevelStates.Instructions = "";
             collision.GetComponent<SpriteRenderer>().sortingOrder = 9;
+
         }
     }
 
@@ -169,22 +193,27 @@ public class PlayerBehavior : MonoBehaviour
 
     private void inputKeys()
     {
-        if (Input.GetKey(KeyCode.P))
+
+        if (Input.GetKeyUp(KeyCode.F))
         {
-            SceneManager.LoadScene(LevelStates.getLvlPast(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
-            LevelStates.m_CurrentTime = "Past";
+            if (LevelStates.m_PlayerCanInteract)
+            {
+                LevelStates.m_PlayerIsInteracting = true;
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            
+            LevelStates.goBackInTime();
+            
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            LevelStates.goFowardInTime();
 
         }
-        else if (Input.GetKey(KeyCode.N))
-        {
-            SceneManager.LoadScene(LevelStates.getLvlPresent(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
-            LevelStates.m_CurrentTime = "Present";
-        }
-        else if (Input.GetKey(KeyCode.F))
-        {
-            SceneManager.LoadScene(LevelStates.getLvlFuture(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
-            LevelStates.m_CurrentTime = "Future";
-        }
+        
 
         if (Input.GetKey(KeyCode.X) && LevelStates.m_PickedAppleSeeds == true)
         {
@@ -202,6 +231,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             LevelStates.m_PlantedAppleSeed = true;
             LevelStates.m_PickedAppleSeeds = false;
+
         }
     }
 }

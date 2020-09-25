@@ -13,6 +13,9 @@ TagManager:
   - Exchanger
   - Door
   - Key
+  - Spike
+  - Lever
+  - BackgroundMusic
   - DoorOpen
   - CantWalk
   - Torch1

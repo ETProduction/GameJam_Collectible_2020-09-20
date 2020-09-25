@@ -12,7 +12,9 @@ public class UIItemFiller : MonoBehaviour
     [SerializeField] private Sprite m_AppleSeedSprite;
     [SerializeField] private Sprite m_AppleSprite;
     [SerializeField] private Sprite m_CoinSprite;
-    [SerializeField] private Text m_epoque;
+    [SerializeField] private Text m_Past;
+    [SerializeField] private Text m_Present;
+    [SerializeField] private Text m_Future;
     [SerializeField] private Text m_numberKey;
     [SerializeField] private Text m_Instructions;
 
@@ -135,22 +137,30 @@ public class UIItemFiller : MonoBehaviour
 
     private void setEpoqueText()
     {
-        m_epoque.text = SceneManager.GetActiveScene().name;
-        if (m_epoque.text.Contains("Past"))
+        string epoque = SceneManager.GetActiveScene().name;    
+        if (epoque.Contains("Past"))
         {
-            m_epoque.text = "Past";
+            m_Past.color = Color.red;
+            m_Present.color = Color.white;
+            m_Future.color = Color.white;
         }
-        else if (m_epoque.text.Contains("Present"))
+        else if (epoque.Contains("Present"))
         {
-            m_epoque.text = "Present";
+            m_Past.color = Color.white;
+            m_Present.color = Color.red;
+            m_Future.color = Color.white;
         }
-        else if (m_epoque.text.Contains("Futur"))
+        else if (epoque.Contains("Futur"))
         {
-            m_epoque.text = "Future";
+            m_Past.color = Color.white;
+            m_Present.color = Color.white;
+            m_Future.color = Color.red;
         }
         else
         {
-            m_epoque.text = "";
+            m_Past.color = Color.white;
+            m_Present.color = Color.white;
+            m_Past.color = Color.white;
         }
     }
 
