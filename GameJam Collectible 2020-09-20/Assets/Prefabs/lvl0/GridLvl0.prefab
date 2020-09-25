@@ -1353,6 +1353,7 @@ GameObject:
   - component: {fileID: 3237908224056378524}
   - component: {fileID: 3237908224056378525}
   - component: {fileID: 3237908224056378526}
+  - component: {fileID: 6816618388535396522}
   m_Layer: 0
   m_Name: Garden
   m_TagString: Garden
@@ -1643,6 +1644,18 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &6816618388535396522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3237908224056378522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5de50b7c913494f8d5cdf4734c896a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3237908224108864421
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7683360948934333775}
   - component: {fileID: 7683360948934333768}
   - component: {fileID: 7683360948934333769}
+  - component: {fileID: 1383877874481632384}
   m_Layer: 0
   m_Name: Exchanger
   m_TagString: Exchanger
@@ -108,3 +109,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &1383877874481632384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7683360948934333770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30bad2ca692c2e4687297a8b51135f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Levels0ObjectInit: {fileID: 398123779245178924, guid: 260c907ec768e7848bb1fb42d40ddb84,
+    type: 3}

@@ -39,12 +39,10 @@ public class LevelStates : MonoBehaviour
         else if (name.Contains("Future"))
         {
             m_CurrentTime = "Future";
-
         }
         else
         {
             m_CurrentTime = "Present";
-
         }
     }
 
@@ -87,6 +85,15 @@ public class LevelStates : MonoBehaviour
 
     public static void loadLvl()
     {
+        if (m_CurrentLevel != 1)
+        {
+            m_PlayerPosition = Vector3.zero;
+        }
+        else
+        {
+            m_PlayerPosition = Level1States.m_DefaultPosition;
+        }
+
         string sceneName = "Level_" + m_CurrentLevel + "_Present";
         SceneManager.LoadScene(sceneName);
     }
@@ -95,6 +102,12 @@ public class LevelStates : MonoBehaviour
     {
         switch (m_CurrentLevel)
         {
+            case 0:
+                Lvl0States.setKeyStates(key);
+                break;
+            case 1:
+                Level1States.setKeyStates(key);
+                break;
             case 2:
                 Lvl2States.setKeyStates(key);
                 break;
@@ -120,10 +133,10 @@ public class LevelStates : MonoBehaviour
         Debug.Log(m_CurrentTime);
         if(m_CurrentTime == "Future")
         {
-        SceneManager.LoadScene(getLvlPresent(m_CurrentLevel), LoadSceneMode.Single);
-        m_CurrentTime = "Present";
-        }else
-        if (m_CurrentTime == "Present")
+            SceneManager.LoadScene(getLvlPresent(m_CurrentLevel), LoadSceneMode.Single);
+            m_CurrentTime = "Present";
+        }
+        else if (m_CurrentTime == "Present")
         {
             SceneManager.LoadScene(getLvlPast(m_CurrentLevel), LoadSceneMode.Single);
             m_CurrentTime = "Past";
@@ -142,4 +155,5 @@ public class LevelStates : MonoBehaviour
             m_CurrentTime = "Future";
         }
     }
+
 }

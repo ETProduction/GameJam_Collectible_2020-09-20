@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2531546387029343359}
   - component: {fileID: 3332389544809196402}
   - component: {fileID: 1959038123660976737}
+  - component: {fileID: -7456208733634634845}
   m_Layer: 11
   m_Name: AppleSeeds
   m_TagString: AppleSeeds
@@ -108,3 +109,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4887818, y: 0.5126926}
   m_EdgeRadius: 0
+--- !u!114 &-7456208733634634845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5254471498897483234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae56de6ccc2cd82439736a8018f6bafa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -4,43 +4,51 @@ using UnityEngine;
 
 public class ButtonWall : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool isTrigger;
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(LevelStates.m_CurrentTime == "Past")
+        if (LevelStates.m_PlayerIsInteracting && isTrigger)
         {
-            LevelStates.Instructions = "Appuyez sur le bouton avec Z pour allumer les torches du présent.";
-
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (LevelStates.m_CurrentTime == "Past")
             {
+
                 Level1States.m_IsButtonPressed = true;
+
             }
-        }
 
-        if (LevelStates.m_CurrentTime == "Future")
-        {
-            LevelStates.Instructions = "Appuyez sur le bouton avec Z pour remmetre à zéro les tuiles.";
-
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (LevelStates.m_CurrentTime == "Future")
             {
                 Level1States.m_ResetTile = true;
             }
+
+            LevelStates.m_PlayerIsInteracting = false;
         }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        LevelStates.m_PlayerCanInteract = true;
+        isTrigger = true;
+
+        LevelStates.Instructions = "Press 'F' to interact";
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {   
+
+        LevelStates.m_PlayerCanInteract = true;
+        isTrigger = true;         
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        isTrigger = false;
+
+        LevelStates.m_PlayerCanInteract = false;
         LevelStates.Instructions = "";
     }
 }

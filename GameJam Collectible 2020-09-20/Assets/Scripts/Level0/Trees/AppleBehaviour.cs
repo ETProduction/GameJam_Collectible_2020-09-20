@@ -9,7 +9,7 @@ public class AppleBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (LevelStates.m_PlantedAppleSeed == false)
+        if (LevelStates.m_PlantedAppleSeed == false && LevelStates.m_PickedApple != true)
         {
             gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -26,5 +26,12 @@ public class AppleBehaviour : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
+        LevelStates.m_PickedApple = true;
+    }
+
 
 }

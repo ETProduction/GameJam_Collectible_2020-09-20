@@ -63,11 +63,13 @@ public class CantWalk : MonoBehaviour
     {
         if (gameObject.tag.Equals("CantWalk") && Level1States.m_IsBridge1 == false)
         {
+            LevelStates.m_PlayerIsDead = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         if (gameObject.tag.Equals("CantWalk2") && Level1States.m_IsBridge2 == false)
         {
+            LevelStates.m_PlayerIsDead = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

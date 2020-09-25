@@ -7,6 +7,8 @@ public class DoorBehavior : MonoBehaviour
 {
     [SerializeField] private Sprite m_NewSprite;
 
+    private bool isTrigger;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,46 +18,64 @@ public class DoorBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (LevelStates.m_PlayerIsInteracting && isTrigger)
+        {
+
+            gameObject.GetComponent<SpriteRenderer>().sprite = m_NewSprite;
+            gameObject.tag = "DoorOpen";
+
+            LevelStates.m_PlayerIsInteracting = false;
+
+            if (gameObject.tag.Equals("DoorOpen"))
+            {
+                LevelStates.Instructions = "";
+
+                SceneManager.LoadScene("Level_Selection");
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (LevelStates.m_KeyPicked == true && LevelStates.m_CurrentTime == "Present")
+
+        if ((Lvl0States.m_KeyIsPicked == true || Level1States.m_KeyIsPicked == true) && LevelStates.m_CurrentTime == "Present")
         {
-            LevelStates.Instructions = "Vous pouvez ouvrir la porte avec Z";
+            LevelStates.m_PlayerCanInteract = true;
+            isTrigger = true;
+
+            LevelStates.Instructions = "Press 'F' to interact";
         }
-        else if (LevelStates.m_KeyPicked == false && LevelStates.m_CurrentTime == "Present")
+        else if ((Lvl0States.m_KeyIsPicked == false || Level1States.m_KeyIsPicked == false) && LevelStates.m_CurrentTime == "Present")
         {
-            LevelStates.Instructions = "Vous ne pouvez pas ouvrir la porte, vous n'avez pas la clé!";
+            LevelStates.Instructions = "No key!";
         }
-        else if (LevelStates.m_KeyPicked == true && LevelStates.m_CurrentTime != "Present")
+        else if ((Lvl0States.m_KeyIsPicked == true || Level1States.m_KeyIsPicked == true) && LevelStates.m_CurrentTime != "Present")
         {
-            LevelStates.Instructions = "Vous ne pouvez pas ouvrir la porte, vous n'êtes pas dans le présent!";
+            LevelStates.Instructions = "Wrong time !";
         }
+        else if ((Lvl0States.m_KeyIsPicked == false || Level1States.m_KeyIsPicked == false) && LevelStates.m_CurrentTime != "Present")
+        {
+            LevelStates.Instructions = "No key, Wrong time!";
+        }
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log("Door");
 
-        if (Input.GetKeyDown(KeyCode.Z) && LevelStates.m_KeyPicked == true && LevelStates.m_CurrentTime == "Present")
+        if (LevelStates.m_KeyPicked == true && LevelStates.m_CurrentTime == "Present")
         {
-            gameObject.GetComponent<SpriteRenderer>().sprite = m_NewSprite;
+            LevelStates.m_PlayerCanInteract = true;
+            isTrigger = true;
 
-            gameObject.tag = "DoorOpen";
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && gameObject.tag.Equals("DoorOpen"))
-        {
-            SceneManager.LoadScene("Level_Selection");
         }
 
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        isTrigger = false;
+        LevelStates.m_PlayerCanInteract = false;
         LevelStates.Instructions = "";
     }
 }
