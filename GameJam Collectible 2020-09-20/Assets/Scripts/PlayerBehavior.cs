@@ -153,30 +153,26 @@ public class PlayerBehavior : MonoBehaviour
     private void inputKeys()
     {
 
-        if (Input.GetKeyUp(KeyCode.I))
+        if (Input.GetKeyUp(KeyCode.F))
         {
             if (LevelStates.m_PlayerCanInteract)
             {
                 LevelStates.m_PlayerIsInteracting = true;
             }
         }
-        if (Input.GetKey(KeyCode.P))
+
+        if (Input.GetKeyUp(KeyCode.Q))
         {
-            Debug.Log(LevelStates.m_CurrentLevel);
-            SceneManager.LoadScene(LevelStates.getLvlPast(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
-            LevelStates.m_CurrentTime = "Past";
+            
+            LevelStates.goBackInTime();
+            
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            LevelStates.goFowardInTime();
 
         }
-        else if (Input.GetKey(KeyCode.N))
-        {
-            SceneManager.LoadScene(LevelStates.getLvlPresent(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
-            LevelStates.m_CurrentTime = "Present";
-        }
-        else if (Input.GetKey(KeyCode.F))
-        {
-            SceneManager.LoadScene(LevelStates.getLvlFuture(LevelStates.m_CurrentLevel), LoadSceneMode.Single);
-            LevelStates.m_CurrentTime = "Future";
-        }
+        
 
         if (Input.GetKey(KeyCode.X) && LevelStates.m_PickedAppleSeeds == true)
         {

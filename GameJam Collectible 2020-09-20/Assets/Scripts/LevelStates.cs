@@ -14,7 +14,7 @@ public class LevelStates : MonoBehaviour
     public static string m_LvlPresent;
     public static string m_LvlFutur;
     public static int m_CurrentLevel;
-    public static string m_CurrentTime;
+    public static string m_CurrentTime ="Present";
     public static bool m_PickedAppleSeeds;
     public static bool m_CanPlantAppleSeed;
     public static bool m_PlantedAppleSeed;
@@ -84,4 +84,31 @@ public class LevelStates : MonoBehaviour
         
     }
 
+    public static void goBackInTime()
+    {
+        Debug.Log(m_CurrentTime);
+        if(m_CurrentTime == "Future")
+        {
+        SceneManager.LoadScene(getLvlPresent(m_CurrentLevel), LoadSceneMode.Single);
+        m_CurrentTime = "Present";
+        }else
+        if (m_CurrentTime == "Present")
+        {
+            SceneManager.LoadScene(getLvlPast(m_CurrentLevel), LoadSceneMode.Single);
+            m_CurrentTime = "Past";
+        }
+    }
+    public static void goFowardInTime()
+    {
+        if (m_CurrentTime == "Past")
+        {
+            SceneManager.LoadScene(getLvlPresent(m_CurrentLevel), LoadSceneMode.Single);
+            m_CurrentTime = "Present";
+        }else
+        if (m_CurrentTime == "Present")
+        {
+            SceneManager.LoadScene(getLvlFuture(m_CurrentLevel), LoadSceneMode.Single);
+            m_CurrentTime = "Future";
+        }
+    }
 }
