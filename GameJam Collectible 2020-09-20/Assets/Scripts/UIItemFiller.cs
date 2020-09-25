@@ -83,18 +83,21 @@ public class UIItemFiller : MonoBehaviour
     {
         if (LevelStates.m_PickedApple && appleSprite == null)
         {
-
+            Debug.Log("Hello");
             appleSprite = new GameObject(); //Create the GameObject
             Image NewImage = appleSprite.AddComponent<Image>(); //Add the Image Component script
             NewImage.sprite = m_AppleSprite; //Set the Sprite of the Image Component on the new GameObject
             appleSprite.GetComponent<RectTransform>().SetParent(transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
             appleSprite.SetActive(true); //Activate the GameObject
+            appleSprite.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 
-            float posX = UITab.transform.position.x;
-            float posY = UITab.transform.position.y;
-            float posZ = UITab.transform.position.z;
+              appleSprite.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
 
-            int numberOfImage = UITab.transform.parent.gameObject.GetComponentsInChildren<Image>().Length;
+
+            float posX = UITab.rectTransform.localPosition.x;
+            float posY = UITab.rectTransform.localPosition.y;
+            float posZ = UITab.rectTransform.localPosition.z;
+
             float uiWidth = UITab.rectTransform.rect.width;
 
             float uiHeight = UITab.rectTransform.rect.height;
@@ -119,10 +122,11 @@ public class UIItemFiller : MonoBehaviour
             coinSprite.GetComponent<RectTransform>().SetParent(transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
             coinSprite.SetActive(true); //Activate the GameObject
             coinSprite.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            coinSprite.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
 
-            float posX = UITab.transform.position.x;
-            float posY = UITab.transform.position.y;
-            float posZ = UITab.transform.position.z;
+            float posX = UITab.rectTransform.localPosition.x;
+            float posY = UITab.rectTransform.localPosition.y;
+            float posZ = UITab.rectTransform.localPosition.z;
 
             int numberOfImage = UITab.transform.parent.gameObject.GetComponentsInChildren<Image>().Length;
             float uiWidth = UITab.rectTransform.rect.width;
