@@ -24,6 +24,29 @@ public class LevelStates : MonoBehaviour
     public static bool m_PlayerIsInteracting;
     public static Vector3 m_PlayerPosition = new Vector3(0,0,0);
 
+    internal static void setCurrentLevel(string name)
+    {
+        if (name.Contains("Past"))
+        {
+            m_CurrentTime = "Past";
+        }
+        else if (name.Contains("Present"))
+        {
+            m_CurrentTime = "Present";
+
+        }
+        else if (name.Contains("Future"))
+        {
+            m_CurrentTime = "Future";
+
+        }
+        else
+        {
+            m_CurrentTime = "Present";
+
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()

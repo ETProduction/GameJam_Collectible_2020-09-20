@@ -12,6 +12,7 @@ TagManager:
   - AppleTree
   - Spike
   - Lever
+  - BackgroundMusic
   layers:
   - Default
   - TransparentFX

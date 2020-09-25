@@ -25,6 +25,10 @@ public class PlayerBehavior : MonoBehaviour
         m_myBody = GetComponent<Rigidbody2D>();
 
     }
+    private void Awake()
+    {
+        LevelStates.setCurrentLevel(SceneManager.GetActiveScene().name);
+    }
     // Update is called once per frame
     void Update()
     {
