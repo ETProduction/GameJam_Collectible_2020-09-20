@@ -139,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 3313922707098446750, guid: d8624778f2a9b694eaa134bdbe913069,
         type: 3}
       propertyPath: m_Text
-      value: '1
+      value: '2
 
 '
       objectReference: {fileID: 0}
