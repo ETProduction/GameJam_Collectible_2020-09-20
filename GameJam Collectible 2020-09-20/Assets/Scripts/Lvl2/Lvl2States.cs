@@ -52,14 +52,20 @@ public class Lvl2States : LevelStates
     }
     private void Awake()
     {
+        LevelStates.m_CurrentLevel = 2;
         if (LevelStates.m_PlayerIsDead)
         {
             LevelStates.m_PlayerPosition = new Vector3(1, 0, 0);
+            m_SpikeFloorIsDown = false;
+            m_SpikeWall1IsDown = false;
+            m_SpikeWall2IsDown = false;
+            m_SpikeWall3IsDown = false;
+            m_SpikeDoor5IsDown = false;
         }
     }
     private void Start()
     {
-        LevelStates.m_CurrentLevel = 2;
+
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Spike").Length; i++)
         {
             if (GameObject.FindGameObjectsWithTag("Spike")[i].name.Contains("Floor"))
