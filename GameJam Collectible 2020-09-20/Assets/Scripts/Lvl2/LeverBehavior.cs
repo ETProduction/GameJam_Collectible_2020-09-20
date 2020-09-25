@@ -19,6 +19,9 @@ public class LeverBehavior : MonoBehaviour
  
     void Update()
     {
+
+        
+
         if (Lvl2States.LeverIsOff(m_LeverIndex))
         {
             m_Lever.GetComponent<SpriteRenderer>().sprite = m_OffStates;
@@ -71,6 +74,10 @@ public class LeverBehavior : MonoBehaviour
     {
         LevelStates.m_PlayerCanInteract = true;
         isTrigger = true;
+       
+        LevelStates.Instructions = "Press 'F' to interact";
+        
+       
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -81,6 +88,8 @@ public class LeverBehavior : MonoBehaviour
     {
         isTrigger = false;
         LevelStates.m_PlayerCanInteract = false;
+        LevelStates.Instructions = "";
+
     }
-    
+
 }

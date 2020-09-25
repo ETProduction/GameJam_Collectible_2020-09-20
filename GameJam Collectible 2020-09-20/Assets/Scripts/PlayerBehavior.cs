@@ -207,11 +207,14 @@ public class PlayerBehavior : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Q))
         {
             
+            LevelStates.Instructions = "";
             LevelStates.goBackInTime();
             
         }
         if (Input.GetKeyUp(KeyCode.E))
         {
+            LevelStates.Instructions = "";
+
             LevelStates.goFowardInTime();
 
         }
