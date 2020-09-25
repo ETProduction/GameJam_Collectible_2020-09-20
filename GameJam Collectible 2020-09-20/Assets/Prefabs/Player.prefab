@@ -42,7 +42,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -184,7 +184,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 500
   m_Animator: {fileID: 3245578565748739970}
-  m_LevelsObjectInit: {fileID: 63010755290069048, guid: 524fb74b68735e0469589e7729fecd9e,
+  m_Levels0ObjectInit: {fileID: 398123779245178924, guid: 260c907ec768e7848bb1fb42d40ddb84,
+    type: 3}
+  m_UIScript: {fileID: 1127504189331842058, guid: 508e326f6af23b24d88fc446c9d0c584,
     type: 3}
 --- !u!95 &3245578565748739970
 Animator:

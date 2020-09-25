@@ -13,10 +13,18 @@ public class LevelStates : MonoBehaviour
     public static int m_CurrentLevel;
     public static string m_CurrentTime;
     public static bool m_PickedAppleSeeds;
+    public static bool m_InitAppleSeeds;
     public static bool m_CanPlantAppleSeed;
     public static bool m_PlantedAppleSeed;
     public static bool m_PickedApple;
     public static bool m_AppleDropped;
+
+    public static bool m_OnExchanger;
+    public static bool m_KeyPicked;
+
+    private static string m_Instructions;
+
+    public static string Instructions { get => m_Instructions; set => m_Instructions = value; }
 
 
     // Start is called before the first frame update

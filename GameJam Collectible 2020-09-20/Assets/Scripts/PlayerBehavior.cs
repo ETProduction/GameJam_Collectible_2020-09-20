@@ -11,7 +11,8 @@ public class PlayerBehavior : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private float m_speed;
     [SerializeField] private Animator m_Animator;
-    [SerializeField] LevelObjectsInit m_LevelsObjectInit;
+    [SerializeField] private Level0ObjectsInit m_Levels0ObjectInit;
+    [SerializeField] private UIItemFiller m_UIScript;
 
     private float moveHorizontal = 0;
     private float moveVertical = 0;
@@ -21,9 +22,8 @@ public class PlayerBehavior : MonoBehaviour
     private void Start()
     {
         m_myBody = GetComponent<Rigidbody2D>();
-        LevelStates.m_CurrentLevel = 0;
-
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -51,12 +51,32 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log("Colision");
+        if (collision.collider.tag.Equals("Exchanger"))
+        {
+            if(LevelStates.m_PickedApple == true)
+            {
+                LevelStates.Instructions = "Vous oouvez échanger la pomme pour avoir une clé avec X";
+            }
+            else
+            {
+                LevelStates.Instructions = "Vous n'avez rien à échanger présentement!";
+            }
+
+            LevelStates.m_OnExchanger = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.tag.Equals("Exchanger"))
+        {
+            LevelStates.Instructions = "";
+            LevelStates.m_OnExchanger = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("TriggerEnter");
 
         if (collision.tag.Equals("AppleSeeds"))
         {
@@ -66,20 +86,31 @@ public class PlayerBehavior : MonoBehaviour
 
         if (collision.tag.Equals("Garden"))
         {
+            if(LevelStates.m_PickedAppleSeeds == true && LevelStates.m_CurrentTime == "Past")
+            {
+                LevelStates.Instructions = "Vous pouvez planter vos graines de pomme avec G.";
+            }
+            else if (LevelStates.m_PickedAppleSeeds == true && LevelStates.m_CurrentTime != "Past")
+            {
+                LevelStates.Instructions = "Vous n'êtes pas dans le bon temps pour planter vos graines de pomme!";
+            }
+            else
+            {
+                LevelStates.Instructions = "Vous n'avez pas de graine à planter!";
+            }
+
             LevelStates.m_CanPlantAppleSeed = true;
-            //Debug.Log("TriggerGarden");
         }
 
         if (collision.tag.Equals("MidTree"))
         {
             collision.GetComponent<SpriteRenderer>().sortingOrder = 11;
-            //Debug.Log("TriggerTree");
         }
 
         if (collision.tag.Equals("AppleTree"))
         {
+            LevelStates.Instructions = "Pressez H pour frapper l'arbre et faire tombre la pomme.";
             collision.GetComponent<SpriteRenderer>().sortingOrder = 11;
-            //Debug.Log("TriggerTree");
         }
 
         if (collision.tag.Equals("Apple"))
@@ -96,25 +127,21 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //Debug.Log("TriggerExit");
-
         if (collision.tag.Equals("Garden"))
         {
+            LevelStates.Instructions = "";
             LevelStates.m_CanPlantAppleSeed = false;
-            //Debug.Log(LevelStates.m_PlantedAppleSeed);
-            //Debug.Log("TriggerGarden");
         }
 
         if (collision.tag.Equals("MidTree"))
         {
             collision.GetComponent<SpriteRenderer>().sortingOrder = 9;
-           // Debug.Log("TriggerTree");
         }
 
         if (collision.tag.Equals("AppleTree"))
         {
+            LevelStates.Instructions = "";
             collision.GetComponent<SpriteRenderer>().sortingOrder = 9;
-            //Debug.Log("TriggerTree");
         }
     }
 
@@ -161,19 +188,20 @@ public class PlayerBehavior : MonoBehaviour
 
         if (Input.GetKey(KeyCode.X) && LevelStates.m_PickedAppleSeeds == true)
         {
-            m_LevelsObjectInit.InitSeed();
+            m_Levels0ObjectInit.InitSeed();
             LevelStates.m_PickedAppleSeeds = false;
         }
 
-        //Debug.Log(LevelStates.m_PickedAppleSeeds);
-        //Debug.Log(LevelStates.m_CanPlantAppleSeed);
+        if (Input.GetKey(KeyCode.X) && LevelStates.m_PickedApple == true && LevelStates.m_OnExchanger == true)
+        {
+            m_Levels0ObjectInit.InitApple("DROP");
+            LevelStates.m_PickedApple = false;
+        }
 
         if (Input.GetKey(KeyCode.G) && LevelStates.m_PickedAppleSeeds == true && LevelStates.m_CanPlantAppleSeed == true)
         {
             LevelStates.m_PlantedAppleSeed = true;
             LevelStates.m_PickedAppleSeeds = false;
-            //Destroy(collision.gameObject);
-            //Debug.Log("Planted");
         }
     }
 }

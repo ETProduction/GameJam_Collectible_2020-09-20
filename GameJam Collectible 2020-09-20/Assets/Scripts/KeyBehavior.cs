@@ -7,7 +7,7 @@ public class KeyBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        LevelStates.m_KeyPicked = false;
     }
 
     // Update is called once per frame
@@ -19,8 +19,10 @@ public class KeyBehavior : MonoBehaviour
     {
         if(collision.collider.tag == "Player")
         {
+            LevelStates.m_KeyPicked = true;
             LevelStates.m_numberOfKey += 1;
             Destroy(gameObject);
         }
+
     }
 }

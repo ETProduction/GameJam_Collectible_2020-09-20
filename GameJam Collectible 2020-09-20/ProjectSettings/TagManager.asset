@@ -10,6 +10,14 @@ TagManager:
   - Garden
   - States
   - AppleTree
+  - Exchanger
+  - Door
+  - Key
+  - DoorOpen
+  - CantWalk
+  - Torch1
+  - Torch2
+  - CantWalk2
   layers:
   - Default
   - TransparentFX
